@@ -44,13 +44,13 @@ export default function Navbar() {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass border-b border-[var(--color-border)] py-3"
-            : "py-5 bg-transparent"
+            ? "glass border-b border-[var(--color-border)] py-12 backdrop-blur-sm"
+            : "py-8 bg-transparent"
         }`}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl m px-12 flex justify-between items-center  py-6 justify-between min-h-[50px]">
           {/* Logo */}
           <a
             href="#hero"

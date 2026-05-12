@@ -1,6 +1,7 @@
 "use client";
 
 import { Download } from "lucide-react";
+import Container from "./Container";
 
 export default function ResumeDownload() {
   return (
@@ -29,7 +30,7 @@ export default function ResumeDownload() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <Container className="relative z-10 text-center">
         <p className="font-mono text-sm text-[var(--color-blue)] mb-4 tracking-widest uppercase">
           Full Picture
         </p>
@@ -52,7 +53,7 @@ export default function ResumeDownload() {
           <Download size={22} aria-hidden="true" />
           Download Resume ↓
         </a>
-      </div>
+      </Container>
     </section>
   );
 }

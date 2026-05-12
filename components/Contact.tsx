@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
+import Container from "./Container";
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -40,33 +41,33 @@ export default function Contact() {
     ${errors[field] ? "border-red-500" : "border-[var(--color-border)]"}`;
 
   return (
-    <section id="contact" ref={sectionRef} className="relative py-32 overflow-hidden" aria-label="Contact">
+    <section id="contact" ref={sectionRef} className="relative py-[var(--space-32)] overflow-hidden" aria-label="Contact">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{ background: "radial-gradient(ellipse 60% 50% at 30% 60%, rgba(247,37,133,0.05) 0%, transparent 70%)" }} />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="font-mono text-sm text-[var(--color-pink)] mb-3 tracking-widest uppercase">Get In Touch</p>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-4">
+      <Container>
+        <div className="text-center mb-[var(--space-16)]">
+          <p className="font-mono text-sm text-[var(--color-pink)] mb-[var(--space-3)] tracking-widest uppercase">Get In Touch</p>
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-[var(--space-4)]">
             Let&apos;s Build <span className="gradient-text">Something</span>
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-[var(--space-12)] items-start">
           {/* Left — info */}
-          <div className="space-y-8">
+          <div className="space-y-[var(--space-8)]">
             <p className="font-body text-[var(--color-muted)] text-lg leading-relaxed">
               I&apos;m currently open to senior frontend roles, freelance projects, and exciting
               collaborations. Drop me a message — I respond fast.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-[var(--space-4)]">
               {[
                 { icon: Mail, label: "Email", value: "karemahamdy51@gmail.com", href: "mailto:karemahamdy51@gmail.com" },
                 { icon: Phone, label: "Phone", value: "+20 106 234 0027", href: "tel:+201062340027" },
                 { icon: MapPin, label: "Location", value: "Cairo, Egypt", href: null },
               ].map(({ icon: Icon, label, value, href }) => (
-                <div key={label} className="flex items-center gap-4">
+                <div key={label} className="flex items-center gap-[var(--space-4)]">
                   <div className="w-10 h-10 rounded-xl glass border border-[var(--color-border)] flex items-center justify-center flex-shrink-0">
                     <Icon size={16} className="text-[var(--color-pink)]" aria-hidden="true" />
                   </div>
@@ -83,7 +84,7 @@ export default function Contact() {
             </div>
 
             {/* Social */}
-            <div className="flex items-center gap-4" aria-label="Social links">
+            <div className="flex items-center gap-[var(--space-4)]" aria-label="Social links">
               {[
                 { href: "https://github.com/karemahamdy", icon: Mail, label: "GitHub" },
                 { href: "https://linkedin.com/in/karema-hamdy2010", icon: Mail, label: "LinkedIn" },
@@ -98,16 +99,16 @@ export default function Contact() {
           </div>
 
           {/* Right — form */}
-          <div className="glass rounded-2xl border border-[var(--color-border)] p-8">
+          <div className="glass rounded-2xl border border-[var(--color-border)] p-[var(--space-8)]">
             {submitted ? (
-              <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">
+              <div className="flex flex-col items-center justify-center py-[var(--space-12)] gap-[var(--space-4)] text-center">
                 <CheckCircle size={56} className="success-check text-green-400" aria-hidden="true" />
                 <h3 className="font-display text-xl font-bold text-[var(--color-text)]">Message Sent!</h3>
                 <p className="font-body text-sm text-[var(--color-muted)]">Thanks for reaching out. I&apos;ll get back to you soon.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate aria-label="Contact form" className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <form onSubmit={handleSubmit} noValidate aria-label="Contact form" className="space-y-[var(--space-5)]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-[var(--space-5)]">
                   <div>
                     <label htmlFor="contact-name" className="font-mono text-xs text-[var(--color-muted)] mb-1.5 block">Name *</label>
                     <input id="contact-name" name="name" type="text" value={form.name} onChange={handleChange}
@@ -142,7 +143,7 @@ export default function Contact() {
             )}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

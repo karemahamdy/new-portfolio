@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import {  Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import Container from "./Container";
 
 export default function Footer() {
   const [eggCount, setEggCount] = useState(0);
@@ -22,7 +23,7 @@ export default function Footer() {
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{ background: "linear-gradient(to top, rgba(247,37,133,0.03), transparent)" }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <Container className="relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo + tagline */}
           <div className="flex flex-col items-center md:items-start gap-2">
@@ -61,7 +62,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Easter egg terminal popup */}
       {eggOpen && (

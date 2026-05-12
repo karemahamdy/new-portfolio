@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, Briefcase, Zap } from "lucide-react";
+import Container from "./Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +39,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-[var(--space-32)] overflow-hidden"
       aria-label="About Me"
     >
       {/* Decorative bg */}
@@ -51,7 +52,7 @@ export default function About() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <Container className="grid md:grid-cols-2 gap-[var(--space-16)] items-center">
         {/* Left — decorative */}
         <div ref={leftRef} className="relative" aria-hidden="true">
           <div
@@ -117,15 +118,15 @@ export default function About() {
 
         {/* Right — content */}
         <div ref={rightRef}>
-          <p className="font-mono text-sm text-[var(--color-pink)] mb-3 tracking-widest uppercase">
+          <p className="font-mono text-sm text-[var(--color-pink)] mb-[var(--space-3)] tracking-widest uppercase">
             Who I Am
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] leading-tight mb-6">
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] leading-tight mb-[var(--space-6)]">
             About{" "}
             <span className="gradient-text">Me</span>
           </h2>
 
-          <div className="space-y-4 font-body text-[var(--color-muted)] leading-relaxed text-[1.05rem]">
+          <div className="space-y-[var(--space-4)] font-body text-[var(--color-muted)] leading-relaxed text-[1.05rem]">
             <p>
               I&apos;m <strong className="text-[var(--color-text)]">Karema Hamdy</strong>, a Senior
               Frontend Developer with{" "}
@@ -147,14 +148,14 @@ export default function About() {
           </div>
 
           {/* Career goal */}
-          <div className="mt-8 inline-flex items-center gap-3 px-5 py-3 rounded-xl glass-pink border border-[rgba(247,37,133,0.2)]">
+          <div className="mt-[var(--space-8)] inline-flex items-center gap-3 px-5 py-3 rounded-xl glass-pink border border-[rgba(247,37,133,0.2)]">
             <Zap size={16} className="text-[var(--color-pink)] flex-shrink-0" aria-hidden="true" />
             <span className="font-body text-sm text-[var(--color-text)]">
               Growing toward full-stack engineering ownership
             </span>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

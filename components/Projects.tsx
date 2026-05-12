@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink, Mail } from "lucide-react";
+import Container from "./Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -194,7 +195,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-[var(--space-32)] overflow-hidden"
       aria-label="Projects"
     >
       <div
@@ -206,12 +207,12 @@ export default function Projects() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="font-mono text-sm text-[var(--color-pink)] mb-3 tracking-widest uppercase">
+      <Container>
+        <div className="text-center mb-[var(--space-16)]">
+          <p className="font-mono text-sm text-[var(--color-pink)] mb-[var(--space-3)] tracking-widest uppercase">
             Portfolio
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-[var(--space-4)]">
             Selected <span className="gradient-text">Work</span>
           </h2>
           <p className="font-body text-[var(--color-muted)] text-lg">
@@ -220,12 +221,12 @@ export default function Projects() {
         </div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-6)]">
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} />
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

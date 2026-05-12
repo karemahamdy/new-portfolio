@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Container from "./Container";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,7 +91,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-[var(--space-32)] overflow-hidden"
       aria-label="Skills"
     >
       {/* Background glow */}
@@ -103,13 +104,13 @@ export default function Skills() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <Container>
         {/* Heading */}
-        <div ref={headingRef} className="text-center mb-16">
-          <p className="font-mono text-sm text-[var(--color-blue)] mb-3 tracking-widest uppercase">
+        <div ref={headingRef} className="text-center mb-[var(--space-16)]">
+          <p className="font-mono text-sm text-[var(--color-blue)] mb-[var(--space-3)] tracking-widest uppercase">
             What I Work With
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-[var(--space-4)]">
             My <span className="gradient-text">Toolkit</span>
           </h2>
           <p className="font-body text-[var(--color-muted)] text-lg">
@@ -118,13 +119,13 @@ export default function Skills() {
         </div>
 
         {/* Skill groups */}
-        <div className="space-y-12">
+        <div className="space-y-[var(--space-12)]">
           {skillGroups.map((group) => (
             <div key={group.title}>
-              <h3 className="font-mono text-xs text-[var(--color-muted)] tracking-widest uppercase mb-5">
+              <h3 className="font-mono text-xs text-[var(--color-muted)] tracking-widest uppercase mb-[var(--space-5)]">
                 {group.title}
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-[var(--space-3)]">
                 {group.chips.map((chip) => (
                   <span
                     key={chip.label}
@@ -144,10 +145,10 @@ export default function Skills() {
         </div>
 
         {/* Note */}
-        <p className="text-center mt-14 font-mono text-sm text-[var(--color-muted)] italic">
+        <p className="text-center mt-[var(--space-16)] font-mono text-sm text-[var(--color-muted)] italic">
           ...and always learning what&apos;s next.
         </p>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Mail, ArrowDown, Download } from "lucide-react";
 import dynamic from "next/dynamic";
+import Container from "./Container";
 
 const ThreeBackground = dynamic(() => import("./ThreeBackground"), { ssr: false });
 
@@ -123,11 +124,11 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 text-center px-6 max-w-7xl mx-auto pt-24 pb-16">
+      <Container className="relative z-10 text-center pt-[var(--space-24)] pb-[var(--space-16)]">
         {/* Available badge */}
         <div
           ref={labelRef}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-border)] glass text-sm font-body text-[var(--color-muted)] mb-10"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-border)] glass text-sm font-body text-[var(--color-muted)] mb-[var(--space-10)]"
           aria-label="Availability status"
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
@@ -135,7 +136,7 @@ export default function Hero() {
         </div>
 
         {/* Main heading with letter animation */}
-        <div ref={headingRef} className="overflow-hidden mb-6" aria-label="Karema Hamdy">
+        <div ref={headingRef} className="overflow-hidden mb-[var(--space-6)]" aria-label="Karema Hamdy">
           {letters.map((line, li) => (
             <div key={li} className="flex justify-center flex-wrap overflow-hidden">
               {line.split("").map((char, ci) => (
@@ -165,7 +166,7 @@ export default function Hero() {
         {/* Typing role */}
         <div
           ref={roleRef}
-          className="font-mono text-lg md:text-2xl mb-6 h-8 flex items-center justify-center gap-1"
+          className="font-mono text-lg md:text-2xl mb-[var(--space-6)] h-8 flex items-center justify-center gap-1"
           aria-live="polite"
           aria-label={`Current role: ${typedRole}`}
         >
@@ -177,7 +178,7 @@ export default function Hero() {
         {/* Tagline */}
         <p
           ref={taglineRef}
-          className="font-body text-[var(--color-muted)] text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-12"
+          className="font-body text-[var(--color-muted)] text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-[var(--space-12)]"
         >
           Building scalable frontend systems that turn complex business logic
           into seamless user experiences.
@@ -186,7 +187,7 @@ export default function Hero() {
         {/* Stats */}
         <div
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-3xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-[var(--space-12)] max-w-3xl mx-auto"
           aria-label="Key statistics"
         >
           {stats.map((s, i) => (
@@ -206,7 +207,7 @@ export default function Hero() {
         {/* CTAs */}
         <div
           ref={ctaRef}
-          className="flex flex-wrap items-center justify-center gap-4 mb-10"
+          className="flex flex-wrap items-center justify-center gap-4 mb-[var(--space-10)]"
         >
           <a
             href="#projects"
@@ -262,7 +263,7 @@ export default function Hero() {
             </a>
           ))}
         </div>
-      </div>
+      </Container>
 
       {/* Scroll indicator */}
       <a

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Download, Menu, X, Sun, Moon } from "lucide-react";
+import Container from "./Container";
 
 const links = [
   { href: "#hero", label: "Home" },
@@ -44,13 +45,13 @@ export default function Navbar() {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass border-b border-[var(--color-border)] py-12 backdrop-blur-sm"
-            : "py-8 bg-transparent"
+            ? "glass border-b border-[var(--color-border)] py-[var(--space-3)] backdrop-blur-sm"
+            : "py-[var(--space-6)] bg-transparent"
         }`}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-7xl m px-12 flex justify-between items-center  py-6 justify-between min-h-[50px]">
+        <Container className="flex justify-between items-center min-h-[50px]">
           {/* Logo */}
           <a
             href="#hero"
@@ -109,7 +110,7 @@ export default function Navbar() {
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-        </div>
+        </Container>
       </nav>
 
       {/* Mobile overlay */}

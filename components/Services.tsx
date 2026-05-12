@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Code2, Server, Zap, GitBranch, Users } from "lucide-react";
-import Container from "./Container";
+import Section from "./Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,45 +71,56 @@ export default function Services() {
     el.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) translateZ(0)";
   };
 
-  return (
-    <section id="services" ref={sectionRef} className="relative py-[var(--space-32)] overflow-hidden" aria-label="Services">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(76,201,240,0.04) 0%, transparent 70%)" }} />
+  const bgGlow = (
+    <div style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(76,201,240,0.04) 0%, transparent 70%)", inset: 0, position: "absolute" }} />
+  );
 
-      <Container>
-        <div className="text-center mb-[var(--space-16)]">
+  return (
+    <Section
+      id="services"
+      ref={sectionRef}
+      ariaLabel="Services"
+      bg={bgGlow}
+      innerClassName="flex flex-col gap-[var(--space-16)]"
+    >
+      {/* Heading row */}
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-[var(--space-4)]">
+        <div>
           <p className="font-mono text-sm text-[var(--color-pink)] mb-[var(--space-3)] tracking-widest uppercase">Services</p>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-[var(--space-4)]">
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)]">
             What I <span className="gradient-text">Offer</span>
           </h2>
         </div>
+        <p className="font-body text-[var(--color-muted)] text-lg md:text-right md:max-w-xs">
+          End-to-end frontend expertise
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-6)]">
-          {services.map((s) => {
-            const Icon = s.icon;
-            const isPink = s.accent === "pink";
-            return (
-              <div
-                key={s.title}
-                className={`service-card tilt-card glass rounded-2xl p-[var(--space-8)] border cursor-default transition-all duration-300
-                  ${isPink
-                    ? "border-[rgba(247,37,133,0.15)] hover:border-[rgba(247,37,133,0.5)] hover:shadow-[0_0_40px_rgba(247,37,133,0.12)]"
-                    : "border-[rgba(76,201,240,0.15)] hover:border-[rgba(76,201,240,0.5)] hover:shadow-[0_0_40px_rgba(76,201,240,0.12)]"}`}
-                onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-[var(--space-6)]
-                  ${isPink ? "bg-[rgba(247,37,133,0.12)] text-[var(--color-pink)]" : "bg-[rgba(76,201,240,0.12)] text-[var(--color-blue)]"}`}>
-                  <Icon size={22} aria-hidden="true" />
-                </div>
-                <h3 className="font-display font-bold text-lg text-[var(--color-text)] mb-[var(--space-3)] leading-snug">{s.title}</h3>
-                <p className="font-body text-sm text-[var(--color-muted)] leading-relaxed">{s.desc}</p>
-                <div className={`mt-[var(--space-6)] h-px w-full ${isPink ? "bg-gradient-to-r from-[rgba(247,37,133,0.4)] to-transparent" : "bg-gradient-to-r from-[rgba(76,201,240,0.4)] to-transparent"}`} aria-hidden="true" />
+      {/* Service cards grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-6)]">
+        {services.map((s) => {
+          const Icon = s.icon;
+          const isPink = s.accent === "pink";
+          return (
+            <div
+              key={s.title}
+              className={`service-card tilt-card glass rounded-2xl p-[var(--space-8)] border cursor-default transition-all duration-300 flex flex-col gap-[var(--space-4)]
+                ${isPink
+                  ? "border-[rgba(247,37,133,0.15)] hover:border-[rgba(247,37,133,0.5)] hover:shadow-[0_0_40px_rgba(247,37,133,0.12)]"
+                  : "border-[rgba(76,201,240,0.15)] hover:border-[rgba(76,201,240,0.5)] hover:shadow-[0_0_40px_rgba(76,201,240,0.12)]"}`}
+              onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
+              onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+            >
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isPink ? "bg-[rgba(247,37,133,0.12)] text-[var(--color-pink)]" : "bg-[rgba(76,201,240,0.12)] text-[var(--color-blue)]"}`}>
+                <Icon size={22} aria-hidden="true" />
               </div>
-            );
-          })}
-        </div>
-      </Container>
-    </section>
+              <h3 className="font-display font-bold text-lg text-[var(--color-text)] leading-snug">{s.title}</h3>
+              <p className="font-body text-sm text-[var(--color-muted)] leading-relaxed flex-1">{s.desc}</p>
+              <div className={`h-px w-full ${isPink ? "bg-gradient-to-r from-[rgba(247,37,133,0.4)] to-transparent" : "bg-gradient-to-r from-[rgba(76,201,240,0.4)] to-transparent"}`} aria-hidden="true" />
+            </div>
+          );
+        })}
+      </div>
+    </Section>
   );
 }

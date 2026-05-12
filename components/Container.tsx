@@ -7,6 +7,7 @@ interface ContainerProps {
   size?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   className?: string;
   as?: React.ElementType;
+  style?: React.CSSProperties;
 }
 
 const Container = ({
@@ -14,6 +15,7 @@ const Container = ({
   size = "xl",
   className = "",
   as: Component = "div",
+  style = {},
 }: ContainerProps) => {
   const maxWidths = {
     sm: "var(--container-max-sm)",
@@ -27,7 +29,7 @@ const Container = ({
   return (
     <Component
       className={`mx-auto w-full px-[var(--container-padding)] ${className}`}
-      style={{ maxWidth: maxWidths[size] }}
+      style={{ maxWidth: maxWidths[size], ...style }}
     >
       {children}
     </Component>

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Briefcase } from "lucide-react";
-import Container from "./Container";
+import Section from "./Section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,96 +89,109 @@ export default function Experience() {
     return () => ctx.revert();
   }, []);
 
+  const bgGlow = (
+    <div style={{ background: "radial-gradient(ellipse 50% 60% at 90% 40%, rgba(247,37,133,0.04) 0%, transparent 70%)", inset: 0, position: "absolute" }} />
+  );
+
   return (
-    <section id="experience" ref={sectionRef} className="relative py-[var(--space-32)] overflow-hidden" aria-label="Experience">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
-        style={{ background: "radial-gradient(ellipse 50% 60% at 90% 40%, rgba(247,37,133,0.04) 0%, transparent 70%)" }} />
-      <Container>
-        <div className="text-center mb-[var(--space-20)]">
+    <Section
+      id="experience"
+      ref={sectionRef}
+      ariaLabel="Experience"
+      bg={bgGlow}
+      innerClassName="flex flex-col gap-[var(--space-16)]"
+    >
+      {/* Heading row */}
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-[var(--space-4)]">
+        <div>
           <p className="font-mono text-sm text-[var(--color-blue)] mb-[var(--space-3)] tracking-widest uppercase">Career Path</p>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)] mb-[var(--space-4)]">
+          <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[var(--color-text)]">
             Career <span className="gradient-text">Journey</span>
           </h2>
         </div>
+        <p className="font-body text-[var(--color-muted)] text-lg md:text-right md:max-w-xs">
+          3+ years building enterprise frontends
+        </p>
+      </div>
 
-        <div className="relative">
-          <div ref={lineRef} className="timeline-line absolute left-5 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px" aria-hidden="true" />
+      {/* Timeline */}
+      <div className="relative">
+        <div ref={lineRef} className="timeline-line absolute left-5 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px" aria-hidden="true" />
 
-          <div className="space-y-[var(--space-12)]">
-            {experiences.map((exp, i) => {
-              const isPink = exp.accent === "pink";
-              return (
-                <div key={exp.id} className={`tl-card relative flex gap-[var(--space-6)] md:gap-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                  {/* Node */}
-                  <div className="absolute left-3 md:left-1/2 top-6 md:-translate-x-1/2 z-10">
-                    <div className={`tl-node w-5 h-5 rounded-full border-2 ${isPink ? "bg-[var(--color-pink)] border-[var(--color-pink)]" : "bg-[var(--color-blue)] border-[var(--color-blue)]"}`} aria-hidden="true" />
+        <div className="flex flex-col gap-[var(--space-12)]">
+          {experiences.map((exp, i) => {
+            const isPink = exp.accent === "pink";
+            return (
+              <div key={exp.id} className={`tl-card relative flex gap-[var(--space-6)] md:gap-0 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                {/* Node */}
+                <div className="absolute left-3 md:left-1/2 top-6 md:-translate-x-1/2 z-10">
+                  <div className={`tl-node w-5 h-5 rounded-full border-2 ${isPink ? "bg-[var(--color-pink)] border-[var(--color-pink)]" : "bg-[var(--color-blue)] border-[var(--color-blue)]"}`} aria-hidden="true" />
+                </div>
+                {/* Card */}
+                <div className={`ml-14 md:ml-0 md:w-[calc(50%-2.5rem)] glass rounded-2xl p-[var(--space-6)] border transition-all flex flex-col gap-[var(--space-4)]
+                  ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}
+                  ${isPink ? "border-[rgba(247,37,133,0.2)] hover:border-[rgba(247,37,133,0.4)]" : "border-[rgba(76,201,240,0.2)] hover:border-[rgba(76,201,240,0.4)]"}`}>
+                  <div className="flex items-start justify-between gap-[var(--space-4)]">
+                    <div>
+                      <h3 className="font-display font-bold text-lg text-[var(--color-text)]">{exp.company}</h3>
+                      <p className={`font-body text-sm font-medium ${isPink ? "text-[var(--color-pink)]" : "text-[var(--color-blue)]"}`}>{exp.role}</p>
+                    </div>
+                    <Briefcase size={16} className="text-[var(--color-muted)] flex-shrink-0" aria-hidden="true" />
                   </div>
-                  {/* Card */}
-                  <div className={`ml-14 md:ml-0 md:w-[calc(50%-2.5rem)] glass rounded-2xl p-6 border transition-all
-                    ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}
-                    ${isPink ? "border-[rgba(247,37,133,0.2)] hover:border-[rgba(247,37,133,0.4)]" : "border-[rgba(76,201,240,0.2)] hover:border-[rgba(76,201,240,0.4)]"}`}>
-                    <div className="flex items-start justify-between gap-[var(--space-4)] mb-[var(--space-2)]">
-                      <div>
-                        <h3 className="font-display font-bold text-lg text-[var(--color-text)]">{exp.company}</h3>
-                        <p className={`font-body text-sm font-medium ${isPink ? "text-[var(--color-pink)]" : "text-[var(--color-blue)]"}`}>{exp.role}</p>
-                      </div>
-                      <Briefcase size={16} className="text-[var(--color-muted)] flex-shrink-0" aria-hidden="true" />
-                    </div>
-                    <p className="font-mono text-xs text-[var(--color-muted)] mb-[var(--space-4)]">{exp.period} · {exp.location}</p>
-                    <ul className="space-y-[var(--space-2)] mb-[var(--space-4)]">
-                      {exp.bullets.map((b, bi) => (
-                        <li key={bi} className="font-body text-sm text-[var(--color-muted)] flex gap-2">
-                          <span className={`mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 ${isPink ? "bg-[var(--color-pink)]" : "bg-[var(--color-blue)]"}`} aria-hidden="true" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-wrap gap-[var(--space-2)]">
-                      {exp.stack.map((s) => (
-                        <span key={s} className="px-2.5 py-1 rounded-full text-xs font-mono bg-[var(--color-border)] text-[var(--color-muted)]">{s}</span>
-                      ))}
-                    </div>
+                  <p className="font-mono text-xs text-[var(--color-muted)]">{exp.period} · {exp.location}</p>
+                  <ul className="flex flex-col gap-[var(--space-2)]">
+                    {exp.bullets.map((b, bi) => (
+                      <li key={bi} className="font-body text-sm text-[var(--color-muted)] flex gap-[var(--space-2)]">
+                        <span className={`mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0 ${isPink ? "bg-[var(--color-pink)]" : "bg-[var(--color-blue)]"}`} aria-hidden="true" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-[var(--space-2)]">
+                    {exp.stack.map((s) => (
+                      <span key={s} className="px-2.5 py-1 rounded-full text-xs font-mono bg-[var(--color-border)] text-[var(--color-muted)]">{s}</span>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
-
-            {/* Education divider */}
-            <div className="relative flex justify-center py-[var(--space-2)]">
-              <div className="z-10 px-[var(--space-6)] py-[var(--space-2)] glass rounded-full border border-[var(--color-border)] font-mono text-xs text-[var(--color-muted)]">
-                Education & Certifications
               </div>
+            );
+          })}
+
+          {/* Education divider */}
+          <div className="relative flex justify-center py-[var(--space-2)]">
+            <div className="z-10 px-[var(--space-6)] py-[var(--space-2)] glass rounded-full border border-[var(--color-border)] font-mono text-xs text-[var(--color-muted)]">
+              Education & Certifications
             </div>
+          </div>
 
-            {/* Education */}
-            <div className="tl-card relative flex gap-[var(--space-6)]">
-              <div className="absolute left-3 top-6 z-10">
-                <div className="tl-node w-5 h-5 rounded-full bg-[var(--color-blue)] border-2 border-[var(--color-blue)]" aria-hidden="true" />
-              </div>
-              <div className="ml-14 glass rounded-2xl p-6 border border-[rgba(76,201,240,0.2)] hover:border-[rgba(76,201,240,0.4)] transition-all w-full md:w-[calc(50%-2.5rem)]">
-                <div className="flex items-start justify-between gap-[var(--space-4)] mb-[var(--space-2)]">
-                  <div>
-                    <h3 className="font-display font-bold text-lg text-[var(--color-text)]">Al-Azhar University, Faculty of Science</h3>
-                    <p className="font-body text-sm font-medium text-[var(--color-blue)]">BSc — Computer Science & Mathematics</p>
-                  </div>
-                  <GraduationCap size={16} className="text-[var(--color-muted)] flex-shrink-0" aria-hidden="true" />
+          {/* Education */}
+          <div className="tl-card relative flex gap-[var(--space-6)]">
+            <div className="absolute left-3 top-6 z-10">
+              <div className="tl-node w-5 h-5 rounded-full bg-[var(--color-blue)] border-2 border-[var(--color-blue)]" aria-hidden="true" />
+            </div>
+            <div className="ml-14 glass rounded-2xl p-[var(--space-6)] border border-[rgba(76,201,240,0.2)] hover:border-[rgba(76,201,240,0.4)] transition-all w-full md:w-[calc(50%-2.5rem)] flex flex-col gap-[var(--space-3)]">
+              <div className="flex items-start justify-between gap-[var(--space-4)]">
+                <div>
+                  <h3 className="font-display font-bold text-lg text-[var(--color-text)]">Al-Azhar University, Faculty of Science</h3>
+                  <p className="font-body text-sm font-medium text-[var(--color-blue)]">BSc — Computer Science & Mathematics</p>
                 </div>
-                <p className="font-mono text-xs text-[var(--color-muted)]">2020 – 2024 · Cairo, Egypt</p>
+                <GraduationCap size={16} className="text-[var(--color-muted)] flex-shrink-0" aria-hidden="true" />
               </div>
+              <p className="font-mono text-xs text-[var(--color-muted)]">2020 – 2024 · Cairo, Egypt</p>
             </div>
+          </div>
 
-            {/* Cert placeholder */}
-            <div className="tl-card relative flex gap-[var(--space-6)]">
-              <div className="absolute left-3 top-5 z-10">
-                <div className="w-5 h-5 rounded-full border-2 border-dashed border-[var(--color-muted)]" aria-hidden="true" />
-              </div>
-              <div className="ml-14 glass rounded-xl p-[var(--space-5)] border border-dashed border-[var(--color-border)] w-full">
-                <p className="font-mono text-xs text-[var(--color-muted)] italic">Certifications coming soon...</p>
-              </div>
+          {/* Cert placeholder */}
+          <div className="tl-card relative flex gap-[var(--space-6)]">
+            <div className="absolute left-3 top-5 z-10">
+              <div className="w-5 h-5 rounded-full border-2 border-dashed border-[var(--color-muted)]" aria-hidden="true" />
+            </div>
+            <div className="ml-14 glass rounded-xl p-[var(--space-5)] border border-dashed border-[var(--color-border)] w-full">
+              <p className="font-mono text-xs text-[var(--color-muted)] italic">Certifications coming soon...</p>
             </div>
           </div>
         </div>
-      </Container>
-    </section>
+      </div>
+    </Section>
   );
 }
